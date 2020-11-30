@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema escolar v4</title>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+    <script src="node_modules\axios\dist\axios.min.js"></script>
+</head>
+<body>
+    <h1>Sistema escolar</h1>
+    <div class="box">
+        <div class="columns is-centered is-2">
+
+            <div class="column is-half">
+
+                <div class="notification is-link">
+                    <h1>Ingresar alumno</h1>
+                </div>
+
+                <form action="api/index.php/alumno" method="POST">
+                    <div class="field">
+                        <label class="label" for="nombre">Nombre</label>
+                        <input class="input" type="text" id="nombre" name="nombre">
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="primer_apellido"> Primer apellido</label>
+                        <input class="input" type="text" id="primer_apellido" name="primer_apellido">
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="segundo_apellido"> Primer apellido</label>
+                        <input class="input" type="text" id="segundo_apellido" name="segundo_apellido">
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <input class="button" type="button" value="Enviar" onclick="alumno()">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    function alumno(){
+
+        axios.post(`api/index.php/alumno/${document.forms[0].nombre.value}`, {
+            nombre: document.forms[0].nombre.value,
+            primer_apellido: document.forms[0].primer_apellido.value,
+            segundo_apellido: document.forms[0].segundo_apellido.value,
+        }).then(resp =>  {
+            if (resp.data.aceptado){
+                alert(`Datos guardados con exito`)
+                setTimeout(`location.href='calificacion.html'`, 500)
+
+            }else {
+                alert (`Los datos no fueron guardados exitosamente.`)
+
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+</script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</body>
+</html>

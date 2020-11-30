@@ -1,0 +1,17 @@
+{
+    "name": "danya/sistemaescolarv4",
+    "description": "Sistema escolar basico",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Danya Contreras",
+            "email": "danya.gomes012@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^8.16",
+        "illuminate/events": "^8.16",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.2"
+    }
+}
